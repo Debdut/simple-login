@@ -1,0 +1,25 @@
+doctype html
+head
+  title Simple Login | Registration
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+  link(rel='stylesheet' type='text/css' href='/index.css')
+body.container.pt-5
+  h1 Simple Login
+  h2 Registration
+  p.validate.py-2
+  form(method='post' action='/register' id='register')
+    .form-group
+      label Name
+      input.form-control(type='text' name='name')
+    .form-group
+      label Email
+      input.form-control(type='email' name='email')
+    .form-group
+      label Password
+      input.form-control(type='password' name='password')
+    if isCaptcha
+      .form-group
+        .g-recaptcha(data-sitekey='6LccodoUAAAAAEDCcHcqmW8cJHe30WviuZe7LV7R')
+    input.btn.btn-primary.btn-block(type='submit' value='Submit')
+  script(src='/index.js')
+  script(src='https://www.google.com/recaptcha/api.js')
