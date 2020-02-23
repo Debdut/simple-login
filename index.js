@@ -66,7 +66,9 @@ app.post('/register', async (req, res) => {
   // If more requests than 3 times a day
   const isCaptcha = !(await ipCheck(ip))
   if (isCaptcha) {
-    if (!(await captchaVerify(req))) {
+    const isCaptchaCorrect = await captchaVerify(req)
+    console.log(isCaptchaCorrect)
+    if (!(isCaptchaCorrect)) {
       return res.send({msg: 'Retry Captcha', success: false})
     }
   }
@@ -143,6 +145,7 @@ const captchaVerify = async (req) => {
     if (!data) {
       return false
     } else {
+      console.log(data)
       return data.success
     }
   } catch (error) {
