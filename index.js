@@ -67,9 +67,16 @@ app.post('/register', async (req, res) => {
   const isCaptcha = !(await ipCheck(ip))
   if (isCaptcha) {
     const isCaptchaCorrect = await captchaVerify(req)
-    console.log(isCaptchaCorrect)
     if (!(isCaptchaCorrect)) {
-      return res.send({msg: 'Retry Captcha', success: false})
+      return res.redirect(url.format({
+       pathname: '/register',
+       query: {
+          msg: `Retry Captcha`,
+          heading: 'Retry Captcha',
+          url: '/',
+          title: 'Register'
+        }
+     }))
     }
   }
 
